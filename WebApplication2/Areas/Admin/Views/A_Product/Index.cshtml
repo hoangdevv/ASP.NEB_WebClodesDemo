@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication2.Models.Product>
+<h1>INDEX</h1>
+<p>
+    <a asp-area="Admin" asp-controller="A_Product" asp-action="Add">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price$</td>
+                <td>@product.Description</td>
+                <td>
+                    @if (product.CategoryId != null)
+                    {
+                        @product.CategoryId
+                    }
+                </td>
+
+                <td>
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <img src="@product.ImageUrl" alt="Product Image" style="max-width:200px;" />
+                    }
+                    @if (product.Images != null && product.Images.Any())
+                    {
+                        foreach (var imageUrl in product.Images)
+                        {
+                            <img src="@imageUrl" alt="Product Image" />
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-controller="A_Product"  asp-action="Display" asp-route-id="@product.Id">View</a> |
+                    <a asp-controller="A_Product"  asp-action="Update" asp-route-id="@product.Id">Edit</a> |
+                    <a asp-controller="A_Product"  asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>

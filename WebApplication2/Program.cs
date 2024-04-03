@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.DataAccess;
 using WebApplication2.Models;
@@ -22,6 +22,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 
 builder.Services.AddRazorPages();
 
+// Đăng ký dịch vụ UserManager
+builder.Services.AddScoped<UserManager<ApplicationUser>>();
+
 builder.Services.AddScoped<IProductRepository, EFProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 
@@ -42,15 +45,18 @@ app.UseAuthentication();;
 
 app.UseAuthorization();
 app.MapRazorPages();
-/*app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Product}/{action=Index}/{id?}");*/
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-    name: "admin",
-    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+    name: "areas",
+    pattern: "{area:exists}/{controller=A_Product}/{action=Index}/{id?}");
 });
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Product}/{action=Index}/{id?}");
+
 
 
 app.Run();

@@ -1,0 +1,50 @@
+﻿@model WebApplication2.Models.Product
+
+<div>
+    <h4>Product Detail</h4>
+    <hr />
+    <dl class="row">
+        <div class="col-sm-3">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="Product Image" style="max-width:100%;" />
+            }
+        </div>
+        <div class="col-sm-9">
+            <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+            <dd>@Html.DisplayFor(model => model.Name)</dd>
+            <hr /> 
+
+            <dt>@Html.DisplayNameFor(model => model.Price)</dt>
+            <dd>@Html.DisplayFor(model => model.Price)</dd>
+            <hr /> 
+
+            <dt>Mô tả</dt> 
+            <dd>@Html.DisplayFor(model => model.Description)</dd>
+            <hr /> 
+
+            <dt>Tag</dt>
+            <dd>@Html.DisplayFor(model => model.Category.Name)</dd>
+        </div>
+    </dl>
+
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@* @model WebApplication2.Models.Product
+<h2>@Model.Name</h2>
+<div>
+    <h3>Price: @Model.Price$</h3>
+    <p>Mô tả: @Model.Description</p>
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" />
+        
+
+    }
+</div>
+<a asp-action="Index">Back to List</a> *@
