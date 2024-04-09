@@ -17,8 +17,8 @@
             <!-- logo & menu -->
             <div class="nav">
                 <div class="logo">
-                    <a  class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="~/imagess/logo-one.png" alt="" >
+                    <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index">
+                        <img src="~/imagess/logo-one.png" alt="">
                     </a>
                 </div>
                 <div class="menu">
@@ -27,11 +27,13 @@
                         <li class="menu-item"><a class="nav-link" asp-area="" asp-controller="" asp-action="">Products</a></li>
                         <li class="menu-item"><a class="nav-link" asp-area="" asp-controller="" asp-action="">About</a></li>
                         <li class="menu-item"><a class="nav-link" asp-area="" asp-controller="" asp-action="">Contact</a></li>
-                                                 
-                    </ul>                   
+
+                    </ul>
                 </div>
                 <partial name="_LoginPartial" />
-                <img class="nav-cart" src="~/imagess/cart.png" alt="">
+                <a href="@Url.Action("OrderHistory", "Order")">
+                    <img class="nav-cart" src="~/imagess/cart.png" alt="">
+                </a>
             </div>
             <!-- end -->
             <!-- banner -->
@@ -51,20 +53,20 @@
             <!-- end -->
         </div>
     </div>
-   @*  <div class="container">
-        <div class="categories">
-            <div class="row">
-                <div class="col-3">
-                    <img src="~/imagess/category-one.png" alt="" class="img-categories">
-                </div>
-                <div class="col-3">
-                    <img src="~/imagess/category-2.jpg" alt="" class="img-categories">
-                </div>
-                <div class="col-3">
-                    <img src="~/imagess/category4.jpg" alt="" class="img-categories">
-                </div>
-            </div>
-        </div>
+    @*  <div class="container">
+    <div class="categories">
+    <div class="row">
+    <div class="col-3">
+    <img src="~/imagess/category-one.png" alt="" class="img-categories">
+    </div>
+    <div class="col-3">
+    <img src="~/imagess/category-2.jpg" alt="" class="img-categories">
+    </div>
+    <div class="col-3">
+    <img src="~/imagess/category4.jpg" alt="" class="img-categories">
+    </div>
+    </div>
+    </div>
     </div> *@
     <div class="container">
         @RenderBody()
@@ -270,7 +272,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false) *@
 
-    @* --------------------------------------------------------------------------------------------------- *@
+@* --------------------------------------------------------------------------------------------------- *@
 @* <!DOCTYPE html>
 <html lang="en">
 <head>

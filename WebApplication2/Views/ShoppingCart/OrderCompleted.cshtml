@@ -1,0 +1,31 @@
+﻿@model Order
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đặt hàng thành công</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h2>Đặt hàng thành công</h2>
+    <p>Đơn hàng của bạn sẽ được giao tới sớm nhất. Cảm ơn và hẹn gặp lại!</p>
+    <ul>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <li>Sản phẩm @item.ProductId - Số lượng: @item.Quantity</li>
+        }
+    </ul>
+</body>
+</html>

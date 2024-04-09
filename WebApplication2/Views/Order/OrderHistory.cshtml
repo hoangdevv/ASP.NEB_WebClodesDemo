@@ -1,0 +1,27 @@
+﻿@model List<Order>
+
+<h2>Lịch sử đơn hàng</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Số đơn hàng</th>
+            <th scope="col">Ngày đặt hàng</th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.OrderDate</td>
+                <td>@order.TotalPrice</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Order" asp-action="OrderDetails" asp-route-orderId="@order.Id">Xem chi tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

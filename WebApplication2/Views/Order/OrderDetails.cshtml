@@ -1,0 +1,28 @@
+﻿@model List<OrderDetail>
+
+<h2>Chi tiết đơn hàng</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Sản phẩm</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Giá tiền</th>
+            <th scope="col">Hình ảnh</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderDetail in Model)
+        {
+            <tr>
+                <td>@orderDetail.Product.Name</td>
+                <td>@orderDetail.Quantity</td>
+                <td>@orderDetail.Price</td>
+                <td><img src="@orderDetail.Product.ImageUrl" alt="@orderDetail.Product.Name" style="max-width: 100px; max-height: 100px;" /></td>
+            </tr>
+        }
+        <div>
+            <a class="btn btn-info" asp-controller="Order" asp-action="OrderHistory">Trở về</a>
+        </div>
+    </tbody>
+</table>
