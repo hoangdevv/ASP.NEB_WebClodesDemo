@@ -9,12 +9,10 @@ namespace WebApplication2.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;
-        private readonly ICategoryRepository _categoryRepository;
 
-        public ProductController(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        public ProductController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
-            _categoryRepository = categoryRepository;
         }
 
         // Hiển thị danh sách sản phẩm

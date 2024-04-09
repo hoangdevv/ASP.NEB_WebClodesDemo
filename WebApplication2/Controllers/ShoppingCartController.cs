@@ -39,7 +39,9 @@ UserManager<ApplicationUser> userManager)
            ShoppingCart();
             cart.AddItem(cartItem);
             HttpContext.Session.SetObjectAsJson("Cart", cart);
-            return RedirectToAction("Index");
+
+            var response = new { CartItemCount = cart.Items.Sum(item => item.Quantity) };
+            return Json(response);
         }
         public IActionResult Index()
         {

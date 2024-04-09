@@ -1,13 +1,60 @@
 ﻿@model WebApplication2.Models.Product
-<h2>@Model.Name</h2>
-<div>
-    <h3>Price: @Model.Price$</h3>
-    <p>Mô tả: @Model.Description</p>
-    @if (!string.IsNullOrEmpty(Model.ImageUrl))
-    {
-        <img src="@Model.ImageUrl" alt="Product Image" style="max-width:200px;" />
-        
+@{
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
 
-    }
+<div class="row">
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Model.ImageUrl" alt="Product Image" class="img-fluid">
+        }
+    </div>
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">Tên sản phẩm:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+            <hr />
+            <dt class="col-sm-3">Giá:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
+            <hr />
+            <dt class="col-sm-3">Mô tả:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+            <hr />
+            <dt class="col-sm-3">Tag:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Category.Name)</dd>
+        </dl>
+    </div>
 </div>
-<a asp-action="Index">Back to List</a>
+
+<form asp-controller="ShoppingCart" asp-action="AddToCart" method="post" class="mt-4">
+    <input type="hidden" name="productId" value="@Model.Id" />
+    <div class="sizes">
+        <h6 class="text-uppercase">Kích cỡ</h6>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="size" id="sizeS" value="S" checked>
+            <label class="form-check-label" for="sizeS">S</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="size" id="sizeM" value="M">
+            <label class="form-check-label" for="sizeM">M</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="size" id="sizeL" value="L">
+            <label class="form-check-label" for="sizeL">L</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="size" id="sizeXL" value="XL">
+            <label class="form-check-label" for="sizeXL">XL</label>
+        </div>
+        <!-- Các lựa chọn size khác -->
+    </div>
+    <div class="input-group mt-3">
+        <label for="quantity" class="mr-2">Số lượng:</label>
+        <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" style="width: 100px;" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-danger text-uppercase px-4">Thêm vào giỏ hàng</button>
+        </div>
+    </div>
+</form>
+<a asp-action="Index" class="btn btn-secondary mt-3">Quay lại danh sách sản phẩm</a>

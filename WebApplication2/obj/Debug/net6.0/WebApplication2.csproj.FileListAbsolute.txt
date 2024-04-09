@@ -924,3 +924,6 @@ C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug\net6.0\WebApplication2.pdb
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug\net6.0\WebApplication2.genruntimeconfig.cache
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug\net6.0\ref\WebApplication2.dll
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutAccount.cshtml.rz.scp.css
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutHome.cshtml.rz.scp.css
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutDetail.cshtml.rz.scp.css

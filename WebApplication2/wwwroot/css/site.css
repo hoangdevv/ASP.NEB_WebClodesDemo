@@ -32,14 +32,31 @@ body {
     padding-left: 25px;
     padding-right: 25px;
 }
+a.btn:hover {
+    
+    color: #dc3545;
+}
 a.btn-primary{
     cursor:pointer;
     text-decoration: none;
 }
+   
 a.btn-primary:hover{
     opacity:0.8;
 }
+.btn-back {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
 
+    .btn-back:hover {
+        background-color: #495057;
+    }
 .nav {
     display: flex;
     text-align: center;
@@ -147,6 +164,46 @@ a {
     border-radius: 30px;
     margin-top: 16px;
 }
+/*Cart*/
+.quantity-input {
+    display: flex;
+    align-items: center;
+}
+
+    .quantity-input input[type="text"] {
+        width: 50px;
+        text-align: center;
+    }
+
+    .quantity-input button {
+        background-color: transparent;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        padding: 5px 10px;
+        font-size: 14px;
+        color: #333;
+    }
+
+.minus-btn, .plus-btn {
+    transition: background-color 0.3s;
+}
+
+    .minus-btn:hover, .plus-btn:hover {
+        background-color: #f2f2f2;
+    }
+
+.remove-link {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+    .remove-link:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+/**/
 /* categories */
 .container {
     min-width: 1080px;
@@ -169,7 +226,6 @@ a {
     }
 
 /* end */
-
 .title {
     text-align: center;
     margin: 0 auto 80px;
@@ -189,32 +245,111 @@ a {
         left: 50%;
         transform: translateX(-50%);
     }
-
-.col-4 {
-    flex-basis: 25%;
-    padding: 10px;
-    min-width: 200px;
-    margin-bottom: 50px;
-    transition: transform 0.6s;
+.card {
+    position: relative;
+    border: 1px solid #dee2e6; /* Viền cho thẻ card */
+    border-radius: 10px; /* Bo tròn góc cho thẻ card */
+    overflow: hidden; /* Ẩn nội dung vượt ra ngoài */
+    transition: box-shadow 0.3s; /* Hiệu ứng khi rê chuột vào */
 }
 
-    .col-4 img {
-        width: 100%;
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-
-    .col-4:hover {
-        transform: translateY(-5px);
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Màu nền và độ mờ của overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Ẩn overlay mặc định */
+    transition: opacity 0.3s; /* Hiệu ứng khi hover */
+}
+    .overlay .btn-details {
+        background-color: #ff523b;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
     }
+        .overlay .btn-details:hover {
+            background-color: #117a8b;
+        }
+.card:hover .overlay {
+    opacity: 1; /* Hiển thị overlay khi hover */
+}
 
-h4 {
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-text {
+    font-size: 1rem;
     color: #555;
-    font-size: normal;
 }
 
-.rating .fa {
-    color: #ff523b;
+.rating {
+    color: #f8b739;
+    margin-bottom: 10px;
 }
 
+    .rating i {
+        font-size: 1rem;
+    }
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.input-group label {
+    margin-right: 10px;
+    line-height: 2;
+}
+
+.btn-info {
+    background-color: #ff523b;
+    color: #fff;
+    border: none;
+    transition: all 0.3s;
+}
+
+    .btn-info:hover {
+        background-color: #117a8b;
+    }
+
+.input-group .btn{
+    margin-top: 16px;
+}
+@keyframes added-to-cart {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.added-to-cart-animation {
+    animation: added-to-cart 0.5s ease-in-out;
+}
 /* quang cao san pham */
 .offer {
     background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
