@@ -15,6 +15,8 @@ namespace WebApplication2.DataAccess
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        public DbSet<CartItem> CartItems { get; set; }
     }
 
 }

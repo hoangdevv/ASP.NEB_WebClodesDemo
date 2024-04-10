@@ -26,8 +26,11 @@ namespace WebApplication2.Repository
         }
         public async Task UpdateAsync(Product product)
         {
-            _context.Products.Update(product);
+            /*_context.Products.Update(product);
+            await _context.SaveChangesAsync();*/
+            _context.Entry(product).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
         }
         public async Task DeleteAsync(int id)
         {

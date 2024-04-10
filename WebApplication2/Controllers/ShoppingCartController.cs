@@ -109,7 +109,15 @@ UserManager<ApplicationUser> userManager)
             HttpContext.Session.SetObjectAsJson("Cart", cart);
             return RedirectToAction("Index");
         }
-
+        
+        [HttpPost]
+        public IActionResult UpdateQuantity(int productId, int quantity)
+        {
+            var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart") ?? new ShoppingCart();
+            cart.UpdateQuantity(productId, quantity);
+            HttpContext.Session.SetObjectAsJson("Cart", cart);
+            return RedirectToAction("Index");
+        }
     }
 }
 

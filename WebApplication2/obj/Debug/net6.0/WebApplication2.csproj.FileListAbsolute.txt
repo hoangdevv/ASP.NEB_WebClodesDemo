@@ -930,3 +930,7 @@ D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplicat
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutAccount.cshtml.rz.scp.css
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutDetail.cshtml.rz.scp.css
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutHome.cshtml.rz.scp.css
+C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
