@@ -1,6 +1,22 @@
 ﻿@model Order
-<h2>Thanh Toán</h2>
+@{
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+<h2>Thông tin thanh toán</h2>
+<span>(vui lòng điền thông tin thanh toán)</span>
 <form asp-action="Checkout" method="post">
+    <div class="form-group">
+        <label asp-for="FullName">Họ và Tên: </label>
+        <input asp-for="FullName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone">Điện thoại: </label>
+        <input asp-for="Phone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
     <div class="form-group">
         <label asp-for="ShippingAddress">Địa chỉ</label>
         <input asp-for="ShippingAddress" class="form-control" />
@@ -9,5 +25,57 @@
         <label asp-for="Notes">Ghi chú</label>
         <textarea asp-for="Notes" class="form-control"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Place Order</button>
+    <div class="form-group">
+        <label>Phương thức thanh toán:</label><br />
+        <input type="radio" id="cod" name="PaymentMethod" value="COD">
+        <label for="cod">COD (Thanh toán khi nhận hàng)</label><br>
+        <input type="radio" id="bankTransfer" name="PaymentMethod" value="BankTransfer">
+        <label for="bankTransfer">Chuyển khoản ngân hàng</label><br>
+    </div>
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="terms">
+        <label class="form-check-label" for="terms">Tôi đã đọc và đồng ý với các <span>điều khoản & chính sách</span>của website*.</label>
+    </div>
+
+    <button id="submitButton" type="submit" class="btn btn-primary">Xác nhận mua hàng</button>
 </form>
+
+<script>
+    /* Phải check checkbox và chọn phương thức thanh toán mới có thể xác nhận thanh toán */
+    document.getElementById('submitButton').addEventListener('click', function (event) {
+        if (!validateForm()) {
+            event.preventDefault(); // Ngăn chặn submit form nếu thông tin không hợp lệ
+        }
+    });
+
+    function validateForm() {
+        // Kiểm tra các trường bắt buộc
+        var fullName = document.getElementById('FullName').value.trim();
+        var phone = document.getElementById('Phone').value.trim();
+        var email = document.getElementById('Email').value.trim();
+        var shippingAddress = document.getElementById('ShippingAddress').value.trim();
+        var termsChecked = document.getElementById('terms').checked;
+
+        if (!fullName || !phone || !email || !shippingAddress || !termsChecked) {
+            alert('Vui lòng điền đầy đủ thông tin và chấp nhận điều khoản & chính sách của website.');
+            return false;
+        }
+
+        // Kiểm tra xem người dùng đã chọn phương thức thanh toán chưa
+        var paymentMethods = document.querySelectorAll('input[name="PaymentMethod"]');
+        var paymentMethodChecked = false;
+        for (var i = 0; i < paymentMethods.length; i++) {
+            if (paymentMethods[i].checked) {
+                paymentMethodChecked = true;
+                break;
+            }
+        }
+        if (!paymentMethodChecked) {
+            alert('Vui lòng chọn phương thức thanh toán.');
+            return false;
+        }
+
+        return true;
+    }
+</script>

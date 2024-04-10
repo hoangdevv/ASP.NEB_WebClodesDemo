@@ -80,6 +80,11 @@ UserManager<ApplicationUser> userManager)
                 return RedirectToAction("Index");
             }
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                // Xử lý khi không có người dùng đăng nhập...
+                return RedirectToAction("Login", "Account");
+            }
             order.UserId = user.Id;
             order.OrderDate = DateTime.UtcNow;
             order.TotalPrice = cart.Items.Sum(i => i.Price * i.Quantity);
@@ -89,15 +94,7 @@ UserManager<ApplicationUser> userManager)
                 Quantity = i.Quantity,
                 Price = i.Price
             }).ToList();
-            if (string.IsNullOrEmpty(order.ShippingAddress))
-            {
-                ModelState.AddModelError("ShippingAddress", "Vui lòng nhập địa chỉ giao hàng.");
-                return View(order); // Trả về view Checkout để người dùng có thể nhập lại thông tin
-            }
-            if (order.Notes == null)
-            {
-                order.Notes = "Không có ghi chú";
-            }
+           
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
             HttpContext.Session.Remove("Cart");
