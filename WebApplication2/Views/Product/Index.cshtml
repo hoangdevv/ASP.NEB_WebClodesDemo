@@ -18,10 +18,10 @@
 
 <h2 id="product" class="title">Products Display</h2>
 <div class="container">
-    <div class="row">
+    <div class="row product-slider">
         @foreach (var item in Model)
         {
-            <div class="col-md-3">
+            <div class="col-md-3 product-item" >
                 <div class="card mb-4">
                     <img src="@item.ImageUrl" alt="" class="card-img-top img-container">
                     <form class="overlay" asp-controller="Product" asp-action="Display" asp-route-id="@item.Id">
@@ -50,7 +50,9 @@
                     </div>
                 </div>
             </div>
-
         }
     </div>
 </div>
+
+
+ 

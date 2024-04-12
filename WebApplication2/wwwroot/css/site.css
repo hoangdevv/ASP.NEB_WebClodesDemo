@@ -156,6 +156,19 @@ a {
         margin: 25px 0;
     }
 
+
+.banner-slider {
+    width: 100%;
+}
+
+.banner {
+    display: none;
+}
+
+/* Hiển thị banner hiện tại */
+.slick-active .banner {
+    display: block;
+}
 .btn-primary {
     display: inline-block;
     padding: 16px 29px;
@@ -164,6 +177,10 @@ a {
     border-radius: 30px;
     margin-top: 16px;
 }
+.slick-dots {
+    bottom: calc(100% - 98%);
+}
+
 /*Cart*/
 .quantity-input {
     display: flex;

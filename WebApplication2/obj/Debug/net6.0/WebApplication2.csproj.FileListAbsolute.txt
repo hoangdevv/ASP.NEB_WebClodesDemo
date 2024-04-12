@@ -628,7 +628,6 @@ D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplicat
 D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\staticwebassets.pack.json
 D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\staticwebassets.build.json
 D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\staticwebassets.development.json
-D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\bundle\WebApplication2.styles.css
 D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\projectbundle\WebApplication2.bundle.scp.css
 D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\WebApplication2.csproj.CopyComplete
@@ -934,3 +933,7 @@ C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Code\Hutech\C#\ASP.NetCoreMVC\ASP.NEB_WebClodesDemo\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll

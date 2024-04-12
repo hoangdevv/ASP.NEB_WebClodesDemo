@@ -93,3 +93,14 @@ $(document).ready(function () {
         $('#cartItemCount').text(count); // Cập nhật số lượng sản phẩm trên biểu tượng giỏ hàng
     }
 });
+/* banner slick*/
+$(document).ready(function () {
+    $('.banner-slider').slick({
+        dots: true,
+        infinite: true,
+        autoplay: true, // Tự động trượt
+        autoplaySpeed: 2000, // Tốc độ tự động trượt (3000ms = 3 giây)
+        fade: true,
+        cssEase: 'linear'
+    });
+});
