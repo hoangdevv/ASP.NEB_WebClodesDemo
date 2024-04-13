@@ -21,6 +21,13 @@ namespace WebApplication2.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var products = await _productRepository.GetAllAsync();
+            foreach (var product in products)
+            {
+                if (product.CategoryId != null)
+                {
+                    product.Category = await _categoryRepository.GetByIdAsync(product.CategoryId);
+                }
+            }
             return View(products);
         }
 

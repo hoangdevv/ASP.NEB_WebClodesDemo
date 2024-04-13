@@ -16,12 +16,21 @@
     </div>
 </div>
 
+<div class="slick-carousel">
+    @foreach (var item in Model)
+    {
+        <div class="ml-3">
+            <img src="@item.ImageUrl" alt="@item.Name" class="img-fluid">
+        </div>
+    }
+</div>
+
 <h2 id="product" class="title">Products Display</h2>
 <div class="container">
     <div class="row product-slider">
         @foreach (var item in Model)
         {
-            <div class="col-md-3 product-item" >
+            <div class="col-md-3 product-item">
                 <div class="card mb-4">
                     <img src="@item.ImageUrl" alt="" class="card-img-top img-container">
                     <form class="overlay" asp-controller="Product" asp-action="Display" asp-route-id="@item.Id">
@@ -43,7 +52,7 @@
                                 <label for="quantity" class="mr-2">Số lượng:</label>
                                 <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" style="width: 100px;" />
                                 <div class="input-group-append added-to-cart">
-                                    <button class="btn btn-info btn-add-to-cart" type="submit">Thêm vào giỏ hàng</button>
+                                    <button class="btn btn-info btn-add-to-cart mt-3" type="submit">Thêm vào giỏ hàng</button>
                                 </div>
                             </div>
                         </form>
@@ -54,5 +63,53 @@
     </div>
 </div>
 
+<style>
+    .card-title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-height: 2em;
+    }
+    .slick-carousel {
+        width: 80%; 
+        margin: auto; 
+    }
 
- 
+    .slick-carousel img {
+        width: 100%;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.slick-carousel').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            dots: true,
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>

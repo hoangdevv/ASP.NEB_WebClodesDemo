@@ -347,9 +347,6 @@ a {
         background-color: #117a8b;
     }
 
-.input-group .btn{
-    margin-top: 16px;
-}
 @keyframes added-to-cart {
     0% {
         transform: scale(1);

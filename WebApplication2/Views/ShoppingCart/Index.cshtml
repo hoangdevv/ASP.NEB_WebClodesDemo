@@ -1,4 +1,5 @@
 ﻿@model ShoppingCart
+
 @{
     Layout = "~/Views/Shared/_LayoutDetail.cshtml";
 }
@@ -82,43 +83,90 @@
             <i style="width: 30px" class="fa-solid fa-clock-rotate-left"></i>
         </a>
     </div>
-    
-    <table>
-        <tr>
-            <th>Hinh</th>
-            <th>Sản phẩm</th>
-            <th>Số lượng</th>
-            <th>Số tiền</th>
-            <th>Tổng tiền</th>
-            <th>Action</th>
-        </tr>
-        @foreach (var item in Model.Items)
-        {
+
+    @if (Model.Items.Count > 0)
+    {
+        <table>
             <tr>
-                <td><img src="@item.Product.ImageUrl" alt="@item.Product.Name" style="max-width: 100px; max-height: 100px;" /></td>
-                <td>@item.Name</td>
-                <td>
-                    <div class="quantity-input">
-                        <form asp-controller="ShoppingCart" asp-action="UpdateQuantity" method="post">
-                            <input type="hidden" name="productId" value="@item.ProductId" />
-                            <input type="number" class="quantity" name="quantity" value="@item.Quantity" min="1" max="100" />
-                            <button type="submit">Cập nhật</button>
-                        </form>
-                    </div>
-                </td>
-                <td>@item.Price</td>
-                <td>@(item.Price * item.Quantity)</td>
-                <td>
-                    <a class="remove-link btn btn-info" asp-action="RemoveFromCart" asp-route-productId="@item.ProductId" method="post">Remove</a>
-                </td>
+                <th>Hinh</th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Số tiền</th>
+                <th>Tổng tiền</th>
+                <th>Action</th>
             </tr>
-        }
-    </table>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <div class="col-md-4">
+                            <img src="@item.ImageUrl" class="card-img" alt="Product Image">
+                        </div>
+                    </td>
+                    <td>@item.Name</td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary minus-btn" type="button" onclick="decreaseQuantity(this, @item.Id)">-</button>
+                            </div>
+                            <input type="text" class="form-control text-center quantity-input" value="@item.Quantity" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary plus-btn" type="button" onclick="increaseQuantity(this, @item.Id)">+</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td id="itemPrice_@item.Id">@item.Price.ToString("N0") đ</td>
+                    <td id="totalItemPrice_@item.Id">@string.Format("{0:N0}", item.Price * item.Quantity) đ</td>
+                    <td>
+                        <a class="remove-link btn btn-info" asp-action="RemoveFromCart" asp-route-productId="@item.Id" method="post">Remove</a>
+                    </td>
+                </tr>
+            }
+        </table>
 
-    <div>
-        <a class="btn btn-back" asp-controller="Product" asp-action="Index">Trở về</a>
-        <a class="btn btn-info" asp-action="Checkout">Thanh toán</a>
-    </div>
-
+        <div class="mb-3">
+            <a class="btn btn-back" asp-controller="Product" asp-action="Index">Trở về</a>
+            <a class="btn btn-info" asp-action="Checkout">Thanh toán</a>
+        </div>
+    }
+    else
+    {
+        <p>Không có sản phẩm trong giỏ hàng của bạn.</p>
+    }
 </body>
+<script>
+    function increaseQuantity(button, id) {
+        var input = button.parentNode.previousElementSibling;
+        var value = parseInt(input.value);
+        input.value = value + 1;
+        updateCartItem(id, input.value);
+    }
+
+    function decreaseQuantity(button, id) {
+        var input = button.parentNode.nextElementSibling;
+        var value = parseInt(input.value);
+        if (value > 1) {
+            input.value = value - 1;
+            updateCartItem(id, input.value);
+        }
+    }
+
+    function updateCartItem(productId, quantity) {
+        var itemPriceElement = $('#itemPrice_' + productId);
+        var itemPrice = parseFloat(itemPriceElement.text());
+        var totalItemPrice = itemPrice * quantity;
+
+        $.ajax({
+            url: '@Url.Action("UpdateQuantity", "ShoppingCart")',
+            type: 'POST',
+            data: { id: productId, quantity: quantity },
+            success: function (response) {
+                // Cập nhật tổng tiền của sản phẩm được cập nhật
+                $('#totalItemPrice_' + productId).text(totalItemPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') + ' đ');
+                // Cập nhật tổng tiền của giỏ hàng
+                $('#totalCartPrice').text(response.totalCartPrice);
+            }
+        });
+    }
+</script>
 </html>

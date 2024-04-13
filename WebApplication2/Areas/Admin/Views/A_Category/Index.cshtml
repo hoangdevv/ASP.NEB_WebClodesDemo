@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication2.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-controller="A_Category" asp-action="Add">Create New</a>
+</p>
+
+<form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Nhập tên danh mục...">
+</form>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-action="Display" asp-route-id="@item.Id">Details</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        document.getElementById("searchInput").addEventListener("input", function () {
+            var searchText = this.value.trim().toLowerCase();
+            var rows = document.querySelectorAll("tbody tr");
+
+            rows.forEach(function (row) {
+                var categoryName = row.querySelector("td:nth-child(2)").textContent.trim().toLowerCase();
+                if (categoryName.includes(searchText)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
+}

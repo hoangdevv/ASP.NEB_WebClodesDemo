@@ -20,17 +20,32 @@ namespace WebApplication2.Controllers
         }
         public async Task<IActionResult> OrderHistoryAsync()
         {
-            var user = await _userManager.GetUserAsync(User);
-            var orders = _context.Orders.Where(o => o.UserId == user.Id).ToList();
-            return View(orders);
+            // Lấy thông tin người dùng hiện tại
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+
+            // Kiểm tra xem người dùng đã đăng nhập hay chưa
+            if (user != null)
+            {
+                // Truy vấn các đơn hàng của người dùng dựa trên UserId
+                var orders = await _context.Orders
+                    .Where(o => o.UserId == user.Id)
+                    .ToListAsync();
+
+                return View(orders);
+            }
+            else
+            {
+                // Người dùng chưa đăng nhập, có thể xử lý tùy ý
+                return RedirectToAction("Login", "Account");
+            }
         }
         public IActionResult OrderDetails(int orderId)
         {
-            var orderDetails = _context.OrderDetails
-                                 .Where(od => od.OrderId == orderId)
-                                 .Include(od => od.Product) // Include sản phẩm liên quan
-                                 .ToList();
-            return View(orderDetails);
+            var order = _context.OrderDetails.Where(od => od.OrderId == orderId)
+                                                    .Include(od => od.Product)
+                                                    .ToList();
+
+            return View(order);
         }
     }
 }
