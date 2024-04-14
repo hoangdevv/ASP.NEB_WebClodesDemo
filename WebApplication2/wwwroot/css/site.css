@@ -4,7 +4,12 @@
   min-height: 100%;
 }
 */
-.pr-2{
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.pr-2 {
     padding-right: 8px;
 }
 * {
@@ -61,6 +66,11 @@ a.btn-primary:hover{
     display: flex;
     text-align: center;
     padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .banner.banner z-index: 1000;
 }
 
 .logo img {
@@ -164,7 +174,11 @@ a {
 .banner {
     display: none;
 }
-
+    .banner h1 {
+        overflow: visible;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
 /* Hiển thị banner hiện tại */
 .slick-active .banner {
     display: block;
@@ -180,6 +194,57 @@ a {
 .slick-dots {
     bottom: calc(100% - 98%);
 }
+
+/* Định dạng cho các phần tử slide */
+.slick-carousel .slide-item img {
+    width: 100%;
+    height: auto;
+}
+
+.slick-initialized .slick-slide {
+    display: flex;
+}
+
+.slide {
+    justify-content: space-between; 
+}
+
+.slide-item {
+    flex: 0 0 auto;
+    margin-right: 15px; 
+}
+
+    .slide-item:last-child {
+        margin-right: 0;
+    }
+
+.slick-prev,
+.slick-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    border: none;
+    cursor: pointer;
+    padding: 10px; /* Kích thước nút */
+}
+    /* Định dạng khi hover */
+    .slick-prev:hover,
+    .slick-next:hover {
+        opacity: 0.7;
+    }
+
+    .slick-next:before, .slick-prev:before {
+        font-family: slick;
+        position: absolute;
+        left: 1px;
+        font-size: 20px;
+        line-height: 0;
+        opacity: .75;
+        color: #555;
+        -webkit-font-smoothing: antialiased;
+    }
+    
 
 /*Cart*/
 .quantity-input {
@@ -306,6 +371,10 @@ a {
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-height: 2em;
 }
 
 .card-text {

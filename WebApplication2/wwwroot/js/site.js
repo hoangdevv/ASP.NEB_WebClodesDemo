@@ -15,7 +15,28 @@ function scrollToSection(sectionId) {
         event.preventDefault();
     }
 }
+/* transition */
+document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener("scroll", function () {
+        var fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach(function (element) {
+            if (isElementInViewport(element)) {
+                element.style.opacity = "1";
+            }
+        });
+    });
 
+    // Function to check if an element is in the viewport
+    function isElementInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+});
 document.addEventListener("DOMContentLoaded", function () {
     var quantityInputs = document.querySelectorAll(".quantity");
     var addToCartForms = document.querySelectorAll("form[action='/ShoppingCart/AddToCart']");
@@ -99,8 +120,91 @@ $(document).ready(function () {
         dots: true,
         infinite: true,
         autoplay: true, // Tự động trượt
-        autoplaySpeed: 2000, // Tốc độ tự động trượt (3000ms = 3 giây)
+        autoplaySpeed: 2000, 
         fade: true,
-        cssEase: 'linear'
+        arrows: false,
+        cssEase: 'linear',
     });
 });
+
+/* Selling Products */
+$(document).ready(function () {
+    $('.carousel').slick({
+        slidesToShow: 3,
+        dots: false,
+        centerMode: false,
+        autoplay: true, // Tự động trượt
+        autoplaySpeed: 2000, 
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1
+                }
+            }
+        ]
+    });
+});
+
+/* Update quantity add to cart*/
+$(document).ready(function () {
+    $('.form-add-to-cart').submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        var productId = form.find('input[name="productId"]').val();
+        var quantity = form.find('input[name="quantity"]').val();
+
+        $.ajax({
+            url: '@Url.Action("UpdateCartItemCount", "ShoppingCart")',
+            type: 'POST',
+            data: {
+                productId: productId,
+                quantity: quantity
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('#cartItemCount').text(response.itemCount);
+                }
+            }
+        });
+    });
+});
+
+
+/*document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("login-submit").addEventListener("click", function (event) {
+        event.preventDefault(); // Ngăn chặn việc gửi yêu cầu mặc định của form
+
+        // Lấy giá trị của các trường email và mật khẩu từ form
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        // Gửi yêu cầu đăng nhập đến server
+        fetch("Admin/Login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "email=" + encodeURIComponent(email) +
+                "&password=" + encodeURIComponent(password)
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Đăng nhập thành công, chuyển hướng tới trang admin
+                    window.location.href = "/Admin";
+                } else {
+                    // Đăng nhập không thành công, hiển thị thông báo lỗi
+                    alert("Đăng nhập không thành công. Vui lòng thử lại.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    });
+});*/

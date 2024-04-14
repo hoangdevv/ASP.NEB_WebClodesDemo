@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication2.DataAccess;
@@ -105,12 +106,31 @@ namespace WebApplication2.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateQuantity(int id, int quantity)
+        public IActionResult UpdateQuantity(int productId, int quantity)
         {
             var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart") ?? new ShoppingCart();
-            cart.UpdateItem(id, quantity);
+            cart.UpdateQuantity(productId, quantity);
             HttpContext.Session.SetObjectAsJson("Cart", cart);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCartItemCount(int productId, int quantity)
+        {
+            var cart = HttpContext.Session.GetObjectFromJson<ShoppingCart>("Cart") ?? new ShoppingCart();
+
+            CartItem item = cart.Items.Find(x => x.Id == productId);
+            if (item != null)
+            {
+                // Nếu sản phẩm tồn tại trong giỏ hàng, cập nhật số lượng
+                item.Quantity = quantity;
+            }
+
+            // Lưu giỏ hàng vào Session
+            HttpContext.Session.SetObjectAsJson("Cart", cart);
+
+            // Trả về số lượng sản phẩm mới cho client dưới dạng JSON
+            return Json(new { success = true, itemCount = cart.Items.Sum(x => x.Quantity) });
         }
 
     }

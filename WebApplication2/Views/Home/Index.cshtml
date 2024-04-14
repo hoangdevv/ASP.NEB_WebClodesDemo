@@ -1,7 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<WebApplication2.Models.Product>
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<div class="text-center">
-    <h1>HOME...</h1>
+<div class="container wrapper">
+    <h2 id="selling-products" class="title">Selling Products</h2>
+    <!-- Di chuyển slick-prev và slick-next ra khỏi div có class là carousel -->
+    <div class="carousel">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 " style="width: 100px ; margin: 10px">
+                <div class="card mb-4">
+                    <img src="@item.ImageUrl" alt="" class="card-img-top img-container">
+                    <!-- Loại bỏ slick-prev và slick-next khỏi form overlay -->
+                    <form class="overlay" asp-controller="Product" asp-action="Display" asp-route-id="@item.Id">
+                        <button class="btn btn-primary btn-details">Xem chi tiết</button>
+                    </form>
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Price)$</p>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <form id="form-@item.Id" class="form-add-to-cart" asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
+                            <input type="hidden" name="productId" value="@item.Id" />
+                            <div class="input-group">
+                                <label for="quantity" class="mr-2">Số lượng:</label>
+                                <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" style="width: 100px;" />
+                                <div class="input-group-append added-to-cart">
+                                    <button class="btn btn-info btn-add-to-cart mt-3" type="submit">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- Di chuyển slick-prev và slick-next ra ngoài wrapper -->
+    <button class="slick-prev">Previous</button>
+    <button class="slick-next">Next</button>
 </div>

@@ -1,36 +1,15 @@
 ﻿@model IEnumerable<WebApplication2.Models.Product>
 
-<div class="container">
-    <div class="categories">
-        <div class="row">
-            <div class="col-3">
-                <img src="~/imagess/category-one.png" alt="" class="img-categories">
-            </div>
-            <div class="col-3">
-                <img src="~/imagess/category-2.jpg" alt="" class="img-categories">
-            </div>
-            <div class="col-3">
-                <img src="~/imagess/category4.jpg" alt="" class="img-categories">
-            </div>
-        </div>
-    </div>
-</div>
+@{
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
+}
 
-<div class="slick-carousel">
-    @foreach (var item in Model)
-    {
-        <div class="ml-3">
-            <img src="@item.ImageUrl" alt="@item.Name" class="img-fluid">
-        </div>
-    }
-</div>
-
-<h2 id="product" class="title">Products Display</h2>
+<h2 id="product" class="title">Products</h2>
 <div class="container">
-    <div class="row product-slider">
+    <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-3 product-item">
+            <div class="col-md-3 ">
                 <div class="card mb-4">
                     <img src="@item.ImageUrl" alt="" class="card-img-top img-container">
                     <form class="overlay" asp-controller="Product" asp-action="Display" asp-route-id="@item.Id">
@@ -63,53 +42,5 @@
     </div>
 </div>
 
-<style>
-    .card-title {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-height: 2em;
-    }
-    .slick-carousel {
-        width: 80%; 
-        margin: auto; 
-    }
 
-    .slick-carousel img {
-        width: 100%;
-    }
-</style>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.slick-carousel').slick({
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            dots: true,
-            responsive: [
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    });
-</script>

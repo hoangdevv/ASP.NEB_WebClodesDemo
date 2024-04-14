@@ -1231,3 +1231,4 @@ D:\Code\Web\ASP.NET_WebClothesDemo\WebApplication2\obj\Debug\net6.0\refint\WebAp
 D:\Code\Web\ASP.NET_WebClothesDemo\WebApplication2\obj\Debug\net6.0\WebApplication2.pdb
 D:\Code\Web\ASP.NET_WebClothesDemo\WebApplication2\obj\Debug\net6.0\WebApplication2.genruntimeconfig.cache
 D:\Code\Web\ASP.NET_WebClothesDemo\WebApplication2\obj\Debug\net6.0\ref\WebApplication2.dll
+D:\Coding\Learning\Hutech\C#\ASP.NET Core\WebBanHangDemo\ASP.NET-BT3\WebApplication2\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutProduct.cshtml.rz.scp.css
