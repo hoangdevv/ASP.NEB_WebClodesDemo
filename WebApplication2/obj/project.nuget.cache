@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CtqAUJ91Fl9nr5WkVEHA5yux0nHW7WqSd0HtIUSQggnk8DaCxfttAN9flRzY1choba+hUK06kD3wdLsva6JVyg==",
+  "dgSpecHash": "YE+hMja86hWBaOLx26vFNVq35+vvaJm/RTBtn71MQi2aU56o17K8L9v9738ndgKyfas/EgB5WQLHrVE0zP99Zg==",
   "success": true,
-  "projectFilePath": "D:\\Coding\\Learning\\Hutech\\C#\\ASP.NET Core\\WebBanHangDemo\\ASP.NET-BT3\\WebApplication2\\WebApplication2.csproj",
+  "projectFilePath": "D:\\Coding\\Learning\\ASP.NET_WebClothesDemo\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
